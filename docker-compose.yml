@@ -1,0 +1,26 @@
+services:
+  runway:
+    build: .
+    container_name: runway
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - DATA_DIR=/data
+      # 首次启动时创建的默认管理员账号密码（强烈建议修改）
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=changeme123
+      # 可选：也可以启动后在管理后台「系统设置」里随时修改
+      - SUBCONVERTER_URL=http://subconverter:25500
+      - INTERNAL_BASE_URL=http://runway:3000
+      - PUBLIC_BASE_URL=https://sub.example.com
+    volumes:
+      - ./data:/data
+    # 如果你的 Sub-Store 和 SubConverter-Extended 在已有 Docker 网络中，取消下面注释并填写网络名：
+    # networks:
+    #   - proxy-net
+
+# networks:
+#   proxy-net:
+#     external: true
