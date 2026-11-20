@@ -69,11 +69,13 @@ flowchart LR
 
 > 前置条件：你已经部署好 **Sub-Store** 和 **[SubConverter-Extended](https://github.com/Aethersailor/SubConverter-Extended)**（同机 Docker 内网或公网可访问均可）。
 
-### 1. 获取代码并配置 `docker-compose.yml`
+### 1. 准备 `docker-compose.yml`
+
+无需拉取源码编译，直接拉取多架构预构建镜像（支持 `linux/amd64` 与 `linux/arm64`）：
 
 ```bash
-git clone https://github.com/haoqianwei/runway.git
-cd runway
+mkdir -p runway && cd runway
+curl -fsSLO https://raw.githubusercontent.com/haoqianwei/runway/main/docker-compose.yml
 ```
 
 编辑 [docker-compose.yml](docker-compose.yml)：
@@ -83,8 +85,10 @@ cd runway
 ### 2. 启动容器
 
 ```bash
-docker compose up -d --build
+docker compose up -d
 ```
+
+> 如需更新到最新版本：执行 `docker compose pull && docker compose up -d`。
 
 ### 3. 四步完成初始化配置
 

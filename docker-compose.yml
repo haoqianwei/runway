@@ -1,6 +1,8 @@
 services:
   runway:
-    build: .
+    image: ghcr.io/haoqianwei/runway:latest
+    # 如需本地自行构建，注释上面 image 行并取消下面 build 注释：
+    # build: .
     container_name: runway
     restart: unless-stopped
     ports:
